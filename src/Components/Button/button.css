@@ -1,0 +1,18 @@
+.styled-button {
+    background-color: var(--accent-color);
+    color: var(--primary-color-inverse);
+    height: 30px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: calc(var(--base-border-radius) * 100);
+    transition: var(--base-transition-duration);
+    opacity: 0.5;
+    user-select: none;
+    font-size: 14px;
+}
+
+.styled-button.active, .styled-button:hover {
+    opacity: 1;
+    scale: 1.12;
+}

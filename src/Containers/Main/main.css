@@ -1,0 +1,19 @@
+.main-section {
+    padding: 1rem 5rem;
+}
+
+.images-container {
+    margin-top: 2rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-content: flex-start;
+    gap: 2rem;
+}
+
+.images-container .subcontainer {
+    width: 100%;
+    display: grid;
+    gap: inherit;
+    align-content: flex-start;
+}

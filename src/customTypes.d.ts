@@ -1,4 +1,4 @@
-const example = {
+const exampleResponseImage = {
     "id": "BSCHQtzv98Y",
     "slug": "the-sun-is-setting-at-the-end-of-a-pier-BSCHQtzv98Y",
     "alternative_slugs": {
@@ -84,4 +84,52 @@ const example = {
     }
 }
 
-declare type IResponseImage = typeof example;
+const exampleImageStatistics = {
+    "id": "bUAyGFl0hr4",
+    "slug": "a-man-covering-his-face-with-his-hands-bUAyGFl0hr4",
+    "downloads": {
+        "total": 0,
+        "historical": {
+            "change": 0,
+            "resolution": "days",
+            "quantity": 1,
+            "values": [
+                {
+                    "date": "2025-01-31",
+                    "value": 0
+                }
+            ]
+        }
+    },
+    "views": {
+        "total": 27,
+        "historical": {
+            "change": 11,
+            "resolution": "days",
+            "quantity": 1,
+            "values": [
+                {
+                    "date": "2025-01-31",
+                    "value": 11
+                }
+            ]
+        }
+    },
+    "likes": {
+        "total": 0,
+        "historical": {
+            "change": 0,
+            "resolution": "days",
+            "quantity": 1,
+            "values": [
+                {
+                    "date": "2025-01-31",
+                    "value": 0
+                }
+            ]
+        }
+    }
+}
+
+declare type IResponseImage = typeof exampleResponseImage;
+declare type IImageStatistics = typeof exampleImageStatistics;

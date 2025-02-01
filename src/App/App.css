@@ -1,4 +1,9 @@
 .image {
     width: 100%;
     cursor: zoom-in;
+    transition: var(--base-transition-duration);
+}
+
+.image:hover {
+    filter: brightness(80%);
 }

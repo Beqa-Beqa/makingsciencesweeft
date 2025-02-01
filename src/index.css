@@ -355,6 +355,8 @@ template {
   --text-primary: rgb(0, 0, 0);
   --text-primary-inverse: rgb(245 245 245);
   --gray-fading: rgb(180 180 180);
+  --background-shadow: rgba(0, 0, 0, 0.3);
+  --overflow-background-color: rgb(255, 255, 255);
   --base-transition-duration: .2s;
   --base-border-radius: 5px;
   --col: calc(100% / 12);

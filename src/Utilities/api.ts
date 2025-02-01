@@ -14,8 +14,21 @@ export const requestPhotos = async (page: number, perPage: number) => {
     const result = await fetch(url, {
         method: 'GET',
         headers: baseHeaders,
+        cache: 'no-cache'
     });
 
     const data: IResponseImage[] = await result.json();
+    return data;
+}
+
+export const requestPhotoById = async (id: string) => {
+    const url = `${baseApiUrl}/photos/${id}/statistics?quantity=1`;
+
+    const result = await fetch(url, {
+        method: 'GET',
+        headers: baseHeaders
+    });
+
+    const data = await result.json();
     return data;
 }

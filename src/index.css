@@ -351,10 +351,11 @@ template {
 :root {
   --dark: rgb(0, 0, 0);
   --dark-lighter: rgb(36, 37, 42);
-  --accent-color: rgb(78 208 158);
+  --accent-color: rgb(78, 208, 158);
+  --accent-color-fading: rgba(78, 208, 158, .5);
   --text-primary: rgb(0, 0, 0);
-  --text-primary-inverse: rgb(245 245 245);
-  --gray-fading: rgb(180 180 180);
+  --text-primary-inverse: rgb(245, 245, 245);
+  --gray-fading: rgb(180, 180, 180);
   --background-shadow: rgba(0, 0, 0, 0.3);
   --overflow-background-color: rgb(255, 255, 255);
   --base-transition-duration: .2s;

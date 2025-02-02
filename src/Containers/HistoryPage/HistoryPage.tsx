@@ -1,6 +1,7 @@
 import './history.css';
 
 const HistoryPage = () => {
+
     return (
         <></>
     );

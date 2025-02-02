@@ -1,19 +1,22 @@
 .main-section {
     padding: 3rem 5rem 1rem 5rem;
 }
-
+/* 
 .images-container {
     margin-top: 3rem;
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-content: flex-start;
-    gap: 2rem;
+    column-count: 3;
+    column-gap: 1.7rem;
+} */
+
+.masonry-grid {
+    margin-top: 3rem;
+    display: flex;
+    gap: 1.7rem;
 }
 
-.images-container .subcontainer {
+.image {
+    margin-bottom: 1.7rem;
     width: 100%;
-    display: grid;
-    gap: inherit;
-    align-content: flex-start;
+    display: block;
 }

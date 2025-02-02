@@ -1,18 +1,11 @@
-export const splitArray = (arr: Array<any>, countToSplitTo: number) => {
-    const elementCount = Math.ceil(arr.length / countToSplitTo);
-    const newArray = [];
+export const throttle = (func: Function, delay: number) => {
+    let lastCall = 0;
 
-    for (let i = 0; i < countToSplitTo; i++) {
-        let subArray = undefined;
-        
-        if (i === countToSplitTo - 1) {
-            subArray = arr.slice(i * elementCount);
-        } else {
-            subArray = arr.slice(i * elementCount, (i + 1) * elementCount) ;
+    return function(...args: Array<any>) {
+        const now = Date.now();
+        if (now - lastCall >= delay) {
+            lastCall = now;
+            func(...args);
         }
-        
-        newArray.push(subArray);
-    }
-
-    return newArray;
+    };
 }

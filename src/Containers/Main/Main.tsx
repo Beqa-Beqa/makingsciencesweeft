@@ -1,27 +1,53 @@
-import { useEffect, useState } from 'react';
-import { ImageModal, SearchField } from '../../Components';
+import { useContext, useEffect, useState } from 'react';
+import { ImageModal, Loader, SearchField } from '../../Components';
 import './main.css';
 import { requestPhotos } from '../../Utilities/api';
-import { splitArray } from '../../Utilities/general';
+import { generalContext } from '../../Contexts/generalContextProvider';
+import Masonry from 'react-masonry-css';
 
 const Main = () => {
+    const [page, setPage] = useState<number>(1);
     const [images, setImages] = useState<IResponseImage[]>([]);
-    const imagesSplitToThree = splitArray(images, 3);
+    const [isFetching, setIsFetching] = useState<boolean>(false);
+
+    const { loadScheduled, setLoadScheduled } = useContext(generalContext);
 
     useEffect(() => {
-        const fetchData = async () => {
-            const page = 1;
-            const perPage = 20;
+        if (!loadScheduled || isFetching) return; 
+        setPage(prev => prev + 1);
+    }, [loadScheduled]);
 
+    useEffect(() => {
+        if (isFetching) return;
+
+        setIsFetching(true);
+
+        const fetchData = async () => {
+            const perPage = 20;
             const data = await requestPhotos(page, perPage);
-            setImages(data);
+            setImages(prev => {
+                const newImages = [...prev, ...data];
+                return Array.from(new Map(newImages.map(img => [img.id, img])).values());
+            });
+
+            // Reset load scheduler
+            setLoadScheduled(false);
+            setIsFetching(false);
         }
 
         fetchData();
-    }, []);
+    }, [page]);
+
+    // useEffect(() => console.log(page), [page]);
 
     const [searchValue, setSearchValue] = useState<string>('');
     const [imageInView, setImageInView] = useState<IResponseImage | null>(null);
+
+    const masonryBreakpoints = {
+        default: 3,
+        1100: 2,
+        700: 1
+    }
 
     return (
         <>
@@ -34,25 +60,27 @@ const Main = () => {
                     />
                 </div>
 
-                <div className='images-container'>
+                <Masonry
+                    breakpointCols={masonryBreakpoints}
+                    className='masonry-grid'
+                    columnClassName='masonry-column'
+                >
                     {
-                        imagesSplitToThree.map((images: IResponseImage[], index) => {
-                            return <div key={index} className='subcontainer'>
-                                {
-                                    images.map((image) => {
-                                        return <img
-                                            key={image.id}
-                                            onClick={() => setImageInView(image)}
-                                            className='image' 
-                                            src={image.urls.regular} 
-                                            alt={image.alt_description} 
-                                        />
-                                    })
-                                }
-                            </div>
-                        })
+                        images.length ?         
+                            images.map((image) => {
+                                return <img
+                                    key={image.id}
+                                    onClick={() => setImageInView(image)}
+                                    className='image' 
+                                    src={image.urls.regular} 
+                                    alt={image.alt_description} 
+                                />
+                            })
+                        : null
                     }
-                </div>
+                </Masonry>
+
+                <Loader />
             </div>
             {
                 imageInView ?

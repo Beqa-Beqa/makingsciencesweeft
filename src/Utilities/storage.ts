@@ -1,4 +1,4 @@
-import { SEARCHED_VALUES_LOCATION, IMAGES_LOCATION } from "./constants";
+import { SEARCHED_VALUES_LOCATION } from "./constants";
 
 export const getSearchValuesFromCache = () => {
     return JSON.parse(window.localStorage.getItem(SEARCHED_VALUES_LOCATION) || '[]') as string[];

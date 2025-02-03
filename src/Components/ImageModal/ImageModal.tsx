@@ -11,7 +11,7 @@ const ImageModal = (props: {
 
     useEffect(() => {
         const fetchData = async () => {
-            const statistics: IImageStatistics = await requestPhotoById(props.imageData.id);
+            const statistics: IImageStatistics | null = await requestPhotoById(props.imageData.id);
             setImageStatistics(statistics);
         }
 

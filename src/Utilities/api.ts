@@ -9,26 +9,60 @@ const baseHeaders = {
 }
 
 export const requestPhotos = async (page: number, perPage: number) => {
-    const url = `${baseApiUrl}/photos?page=${page}&per_page=${perPage}`;
+    try {
+        const url = `${baseApiUrl}/photos?page=${page}&per_page=${perPage}`;
 
-    const result = await fetch(url, {
-        method: 'GET',
-        headers: baseHeaders,
-        cache: 'no-cache'
-    });
+        const result = await fetch(url, {
+            method: 'GET',
+            headers: baseHeaders,
+            cache: 'no-cache'
+        });
 
-    const data: IResponseImage[] = await result.json();
-    return data;
+        const data: IResponseImage[] = await result.json();
+        return data;
+    } catch (err) {
+        console.error((err as Error).message);
+        return [];
+    }
 }
 
 export const requestPhotoById = async (id: string) => {
-    const url = `${baseApiUrl}/photos/${id}/statistics?quantity=1`;
+    try {
+        const url = `${baseApiUrl}/photos/${id}/statistics?quantity=1`;
+        
+        const result = await fetch(url, {
+            method: 'GET',
+            headers: baseHeaders
+        });
+        
+        const data: IImageStatistics = await result.json();
+        return data;
 
-    const result = await fetch(url, {
-        method: 'GET',
-        headers: baseHeaders
-    });
+    } catch (err) {
+        console.error((err as Error).message);
+        return null;
+    }
+}
 
-    const data = await result.json();
-    return data;
+export const requestPhotosBySearch = async (page: number, perPage: number, search: string) => {
+    try {
+
+        const url = `${baseApiUrl}/search/photos?query=${search.trim()}&page=${page}&per_page=${perPage}`;
+        
+        const result = await fetch(url, {
+            method: 'GET',
+            headers: baseHeaders,
+        });
+        
+        const data: {
+            results: IResponseImage[],
+            total: number,
+            total_pages: number
+        } = await result.json();
+        
+        return data.results;
+    } catch (err) {
+        console.error((err as Error).message);
+        return [];
+    }
 }

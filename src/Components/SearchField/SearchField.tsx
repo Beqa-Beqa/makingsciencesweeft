@@ -4,7 +4,7 @@ import { IoIosSearch } from "react-icons/io";
 const SearchField = (props: {
     value: string,
     setValue: React.Dispatch<React.SetStateAction<string>>,
-    placeHolder?: string
+    placeHolder?: string,
 }) => {
     return (
         <div

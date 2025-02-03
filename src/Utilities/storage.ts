@@ -1,4 +1,4 @@
-import { SEARCHED_VALUES_LOCATION, SEARCHED_IMAGES_LOCATION } from "./constants";
+import { SEARCHED_VALUES_LOCATION, IMAGES_LOCATION } from "./constants";
 
 export const getSearchValuesFromCache = () => {
     return JSON.parse(window.localStorage.getItem(SEARCHED_VALUES_LOCATION) || '[]') as string[];
@@ -14,22 +14,40 @@ export const pushSearchValueInCache = (value: string) => {
     }
 }
 
-export const getImagesFromCache = (searchValue: string) => {
-    const cachedSearches: Record<string, IResponseImage[]> = JSON.parse(window.localStorage.getItem(SEARCHED_IMAGES_LOCATION) || '{}');
-    return cachedSearches[searchValue] ? cachedSearches[searchValue] : [];
-}
+// export const getImagesFromCache = (searchValue: string) => {
+//     const cachedSearches: IImagesCacheStorage = JSON.parse(window.localStorage.getItem(IMAGES_LOCATION) || '{}');
+//     return cachedSearches[searchValue] ? cachedSearches[searchValue] : [];
+// }
 
-export const setImagesInCache = (searchValue: string, values: IResponseImage[]) => {
-    const cachedSearches: Record<string, IResponseImage[]> = JSON.parse(window.localStorage.getItem(SEARCHED_IMAGES_LOCATION) || '{}');
-    let newValues: IResponseImage[] = [];
+// export const setImagesInCache = (searchValue: string, page: number, values: IResponseImage[]) => {
+//     const cachedSearches: IImagesCacheStorage = JSON.parse(window.localStorage.getItem(IMAGES_LOCATION) || '{}');
+//     let searchValueImages = cachedSearches[searchValue];
 
-    if (cachedSearches[searchValue]) newValues = newValues.concat(cachedSearches[searchValue]);
-    newValues = newValues.concat(values);
+//     if (!searchValueImages) searchValueImages = [];
 
-    const updatedImagesCache = JSON.stringify({
-        ...cachedSearches,
-        [searchValue]: newValues
-    });
+//     searchValueImages.push({
+//         page, 
+//         data: values
+//     });
 
-    window.localStorage.setItem(SEARCHED_IMAGES_LOCATION, updatedImagesCache);
-}
+//     const updatedImagesCache = JSON.stringify({
+//         ...cachedSearches,
+//         [searchValue]: searchValueImages
+//     });
+
+//     window.localStorage.setItem(IMAGES_LOCATION, updatedImagesCache);
+// }
+
+// export const deleteImagesChunkInCache = (searchValue: string) => {
+//     const cachedSearches: IImagesCacheStorage = JSON.parse(window.localStorage.getItem(IMAGES_LOCATION) || '{}');
+//     const searchValueImages = cachedSearches[searchValue];
+
+//     if (searchValueImages) searchValueImages.splice(0, 1);
+
+//     const updatedImagesCache = JSON.stringify({
+//         ...cachedSearches,
+//         [searchValue]: searchValueImages
+//     });
+
+//     window.localStorage.setItem(IMAGES_LOCATION, updatedImagesCache);
+// };

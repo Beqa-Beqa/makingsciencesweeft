@@ -133,3 +133,10 @@ const exampleImageStatistics = {
 
 declare type IResponseImage = typeof exampleResponseImage;
 declare type IImageStatistics = typeof exampleImageStatistics;
+
+// declare type IImagesCacheStorage = Record<string, IImageCacheStorageChunk[]>
+
+// declare interface IImageCacheStorageChunk {
+//     page: number,
+//     data: IResponseImage[]
+// }

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './imageModal.css';
 import { requestPhotoById } from '../../Utilities/api';
 import { IoMdClose } from "react-icons/io";
+import { formatNumberWithCommas } from '../../Utilities/general';
 
 const ImageModal = (props: {
     imageData: IResponseImage,
@@ -63,7 +64,7 @@ const ImageModal = (props: {
                             <strong>
                                 {
                                     imageStatistics ?
-                                        imageStatistics.views.total
+                                        formatNumberWithCommas(imageStatistics.views.total)
                                     : '--' 
                                 }
                             </strong>
@@ -75,7 +76,7 @@ const ImageModal = (props: {
                             <strong>
                                 {
                                     imageStatistics ?
-                                        imageStatistics.downloads.total
+                                        formatNumberWithCommas(imageStatistics.downloads.total)
                                     : '--'
                                 }
                             </strong>
@@ -87,7 +88,7 @@ const ImageModal = (props: {
                             <strong>
                                 {
                                     imageStatistics ?
-                                        imageStatistics.likes.total
+                                        formatNumberWithCommas(imageStatistics.likes.total)
                                     : '--'
                                 }
                             </strong>

@@ -1,6 +1,5 @@
 const baseApiUrl = 'https://api.unsplash.com/';
 const accessKey = 'I0cliNgQP6YFsafZeQlhDkXREFoKeGd376Y1HSpM3Pg';
-// const secretKey = 'eobP_Y3nDabuBCf8S2ngPQlh8icMbOtI3Smf1MlbRqw'
 
 const baseHeaders = {
     'Content-Type': 'application/json',
